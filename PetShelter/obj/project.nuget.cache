@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "plr0+EMhAL/wGxwBC66Q/hzXIqCtsmzIXZK9VQHzBjz/41oplN1J60NIvpU1TlnIoLy2eaG9hRReA8fcI5b0pg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\cbirc\\OneDrive\\Desktop\\PetShelter\\PetShelter\\PetShelter.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\cbirc\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\cbirc\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\cbirc\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\cbirc\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\cbirc\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\cbirc\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}

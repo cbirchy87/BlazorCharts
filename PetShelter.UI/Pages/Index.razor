@@ -1,0 +1,64 @@
+﻿@page "/"
+@inject PetShelterService shelterService
+
+<PageTitle>Animal Stats</PageTitle>
+
+@if (allCatList is not null || allDogList is not null)
+{
+    <MudPaper Class="pa-4 mt-4">
+        <MudChart ChartType="ChartType.Pie" InputData="@(new[]{Convert.ToDouble(allCatList.Count()), Convert.ToDouble(allDogList.Count())})" @bind-SelectedIndex="dex" InputLabels="@(new[]{"Cats", "Dogs"})" Width="300px" Height="300px" />
+    </MudPaper>
+
+    <MudPaper Class="pa-4 mt-4">
+        <MudChart ChartType="ChartType.Pie" InputData="@(new[]{Convert.ToDouble(GetCatsByBreed("Domestic Shorthair").Count()), Convert.ToDouble(GetCatsByBreed("British Blue").Count())})" @bind-SelectedIndex="dex" InputLabels="@(new[]{"Domestic Shorthair", "British Blue"})" Width="300px" Height="300px" />
+    </MudPaper>
+
+    <MudPaper Class="pa-4 mt-4">
+        <MudChart ChartType="ChartType.Bar" ChartSeries="@GetSeries()" @bind-SelectedIndex="dex" XAxisLabels="@XAxisLabels" Width="100%" Height="350px"></MudChart>
+    </MudPaper>
+}
+
+
+@code{
+
+    public List<Animal> allAnimalList { get; set; }
+    public List<Animal> allCatList { get; set; }
+    public List<Animal> allDogList { get; set; }
+
+    public List<Animal> CatBreeds { get; set; }
+
+    private List<Animal> GetCatBreeds()
+    {
+        return allCatList.GroupBy(x => x.Breed).Select(x => x.First()).ToList();
+    }
+    private List<ChartSeries> GetSeries(){
+
+        List<ChartSeries> Series = new List<ChartSeries>();
+        foreach (var c in CatBreeds)
+        {
+            Series.Add(new ChartSeries()
+            {
+                Name = c.Breed, Data = new double[] {allCatList.Where(cat=>cat.Breed == c.Breed).Count() }
+            });
+        }
+        return Series;
+    }
+    private int dex = -1; //default value cannot be 0 -> first selectedindex is 0.
+
+    
+    public string[] XAxisLabels = { "Cat1", "Cat2", "Cat3"};
+
+    public List<Animal> GetCatsByBreed(string breed)
+    {
+        var x = allCatList.Where(c => c.Breed == breed).ToList();
+        return x;
+    }
+   
+    protected async override Task OnInitializedAsync()
+    {
+        allAnimalList = await shelterService.GetAllAnimals();
+        allCatList = await shelterService.GetAnimalByType("Cat");
+        allDogList = await shelterService.GetAnimalByType("Dog");
+        CatBreeds = GetCatBreeds();
+    }
+}
